@@ -3,7 +3,8 @@ FROM python:3.9-slim
 
 # System တွင် ffmpeg ကို install လုပ်မည် (SRT timing အတွက် မရှိမဖြစ်)
 RUN apt-get update && \
-    apt-get install -y ffmpeg && \
+    apt-get install -y ffmpeg ca-certificates && \
+    update-ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
 # Work Directory သတ်မှတ်မည်
@@ -17,4 +18,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Port ဖွင့်ပြီး Start မည်
+
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
