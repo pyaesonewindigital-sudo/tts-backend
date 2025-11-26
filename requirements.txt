@@ -4,3 +4,4 @@ edge-tts
 pydub
 python-multipart
 aiofiles
+gTTS
